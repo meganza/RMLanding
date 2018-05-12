@@ -1,0 +1,505 @@
+// fonts: Roboto & Poppins (in replacement for Avenir Next)
+@import url('https://fonts.googleapis.com/css?family=Poppins|Roboto');
+
+// colors
+$brightBlue: #31BEF8;
+$darkBlue: #285B8D;
+$footerBlue: #4A90E2;
+$gray: #D4D4D4;
+$orange: #F4A657;
+$playYellow: #FFBB00;
+$videoDuration: #0E1F2E;
+$videoPrevious: #082136;
+$videoCurrent: #163A59;
+$videoNext: #0C2840;
+$videoArrow: #081F38;
+$articlesBackground: #061626;
+$newsHeading: #293C50;
+$whoBackground: #0C2239;
+$footerBackground: #101C33;
+$gradientLight: #1A4366;
+$gradientDark: #0B2036;
+
+@mixin text ($family, $weight, $size, $color, $spacing, $transform){
+  font-family: $family;
+  font-weight: $weight;
+  font-size: $size;
+  color: $color;
+  letter-spacing: $spacing;
+  text-transform: $transform;
+}
+@mixin default-box ($height, $width, $background, $rotate){
+  height: $height;
+  width: $width;
+  background: $background;
+  -ms-transform: rotate($rotate);
+  -webkit-transform: rotate($rotate);
+  transform: rotate($rotate);
+}
+@mixin default-circle ($size, $background){
+  height: $size;
+  width: $size;
+  background: $background;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+@mixin default-transition {
+  -moz-transition: 1s;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
+}
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin gradient-background {
+  background: linear-gradient(to top right, $gradientDark, $gradientLight);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  background: $darkBlue;
+}
+
+.company-name {
+  @include text ('Roboto', bolder, 20px, white, -1px, uppercase);
+}
+
+p { @include text ('Poppins', lighter, 13px, white, 0px, none); }
+a {
+  @extend p;
+  &:hover {
+    @include default-transition;
+    color: $brightBlue;
+    text-decoration: none;
+  };
+}
+
+h1 { @include text('Poppins', lighter, 96px, white, -3px, uppercase); }
+h2 { @include text('Poppins', lighter, 59px, $brightBlue, -5px, uppercase); }
+h3 {
+  @include text('Poppins', 100, 40px, white, -1px, none);
+  padding: 10px 0px 25px 0px;
+}
+
+button {
+  @extend a;
+  background: transparent;
+  padding: 10px 35px;
+  border-radius: 25px;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+
+  border: 1px solid white;
+}
+
+.navbar {
+  background: transparent;
+  padding: 30px 70px;
+}
+
+.active {
+  padding-bottom: 11px;
+  border-bottom: 1px solid $brightBlue;
+}
+
+.nav {
+  border-bottom: 1px solid white;
+
+  .nav-link {
+    @include text ('Poppins', lighter, 12px, white, 2px, uppercase);
+    padding: 10px 25px;
+    position: relative;
+  }
+
+  .nav-link:first-child{
+    padding-left: 0;
+  }
+
+  .nav-link:last-child{
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 750px) {
+  .nav {
+    display: none;
+  }
+}
+
+.gradient-hero {
+  margin-top: -101px;
+  padding: 100px 0px 5px 0px;
+  @include gradient-background;
+}
+
+.hero {
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.hero-sub { font-size: 21px; }
+
+.stat {
+  margin-top: 30px;
+
+  .stat-sub {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+}
+
+.videos {
+  margin: 50px 10px;
+  position: relative;
+
+  .view-more {
+    margin-right: 70px;
+  }
+
+  @media (max-width: 575.98px) {
+    .view-more {
+      margin-right: 0px;
+      padding-top: 25px;
+      right: 25px;
+    }
+  }
+}
+
+.video-row {
+  display: flex;
+  align-items: center;
+}
+
+.previous-arrow {
+  position: relative;
+  left: -70px;
+  top: 45%;
+  transform: translateY(-50%);
+}
+
+.next-arrow {
+  position: relative;
+  right: -70%;
+  top: 45%;
+  transform: translateY(-50%);
+}
+
+.arrow-box {
+  @include default-box(80px, 80px, $videoArrow, 45deg);
+  border: 1px solid white;
+  opacity: 0.38;
+  z-index: 1100;
+}
+
+.arrow-left {
+  @include default-box(20px, 20px, transparent, 45deg);
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  position: relative;
+  z-index: 1050;
+  top: 50px;
+  left: 35px;
+}
+
+.arrow-right {
+  @include default-box(20px, 20px, transparent, 45deg);
+  border-right: 2px solid white;
+  border-top: 2px solid white;
+  position: relative;
+  z-index: 1050;
+  top: 50px;
+  left: 25px;
+}
+
+.play-video {
+  z-index: 1000;
+  @include default-circle(70px, $playYellow);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.play-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid white;
+}
+
+.current-video {
+  background: $videoCurrent;
+  box-shadow: 0 0 15px $videoDuration;
+  -moz-box-shadow: 0 0 15px $videoDuration;
+  -webkit-box-shadow: 0 0 15px $videoDuration;
+}
+
+.video-duration {
+  margin-top: 30px;
+  border-bottom: 2px solid $videoDuration;
+}
+
+.play-duration {
+  z-index: 1000;
+  @include default-circle(20px, $orange);
+  position: absolute;
+  top: 100%;
+  left: 3%;
+  transform: translate(-50%, -50%);
+}
+
+.play-arrow-duration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid white;
+}
+
+.next-video {
+  margin-left: -15px;
+  background: $videoNext;
+  height: 200px;
+  z-index: 1;
+}
+
+.previous-video {
+  margin-right: -15px;
+  background: $videoPrevious;
+  height: 200px;
+  z-index: 1;
+}
+
+.video-description {
+  margin-top: 35px;
+
+  .description-title {
+    @include text ('Poppins', normal, 14px, white, 1px, uppercase);
+  }
+
+  .description-date {
+    @include text ('Poppins', normal, 11px, $orange, 0px, none);
+    margin-top: -10px;
+  }
+
+  .description-info {
+    @include text ('Poppins', normal, 14px, gray, 0px, none);
+  }
+}
+
+.articles {
+  @extend .hero;
+  background: $articlesBackground;
+  text-align: left;
+  padding-top: 80px;
+  padding-bottom: 20px;
+
+  .category {
+    @include text('Poppins', normal, 14px, $brightBlue, 3px, uppercase);
+  }
+
+  .article-info {
+    @include text('Poppins', light, 18px, white, 0px, none);
+    line-height: 28px;
+    padding-bottom: 35px;
+  }
+
+  @media (max-width: 575.98px) {
+    .view-more {
+      padding-top: 25px;
+      right: 25px;
+    }
+  }
+}
+
+.dots-view {
+  padding: 50px 0px;
+
+  .dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .circle {
+      border: 1px solid #fff;
+      border-radius: 50%;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .inner {
+      background: white;
+      border-radius: 50%;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      margin: 3px;
+      height: 8px;
+      width: 8px;
+    }
+
+    .hollow-circle {
+      border: 1px solid white;
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
+      margin: 10px;
+    }
+  }
+}
+
+.view-more {
+  text-align: right;
+  a {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+  span {
+    vertical-align: center;
+    color: $orange;
+    font-size: 25px;
+    position: relative;
+    top: 5px;
+  }
+}
+
+.news {
+  @extend .articles;
+  background: white;
+  padding-bottom: 70px;
+
+  h3 {
+    color: $newsHeading;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 40px;
+  }
+
+  .view-more {
+    color: $darkBlue;
+  }
+
+  @media (max-width: 575.98px) {
+    .view-more {
+      margin-right: 25px;
+      padding-top: 25px;
+      right: 25px;
+    }
+
+    .events {
+      margin-top: 50px;
+    }
+  }
+}
+
+.who {
+  @extend .articles;
+  text-align: center;
+  background: $whoBackground;
+
+  .quote {
+    font-size: 22px;
+    letter-spacing: -.5px;
+    line-height: 30px;
+  }
+
+  .name {
+    padding-top: 30px;
+
+    p {
+      margin-top: -20px;
+    }
+  }
+
+  .dots {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 4%;
+  }
+}
+
+.awards {
+  @extend .articles;
+  @include gradient-background;
+  padding-bottom: 100px;
+
+  h3 {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 40px;
+  }
+}
+
+.people {
+  margin: 0px 150px;
+
+  .person {
+    text-align: center;
+  }
+
+  .text {
+    padding-top: 15px;
+  }
+
+  .name {
+    padding-bottom: 10px;
+    @include text ('Poppins', bold, 14px, white, 1.5px, uppercase);
+  }
+
+  .description {
+    width: 70%;
+    margin: auto;
+    @include text ('Poppins', lighter, 18px, white, 0px, none);
+  }
+
+  .circle-img {
+    @include default-circle(150px, $gray);
+    margin: auto;
+  }
+
+  @media (max-width: 750px) {
+    .person {
+      padding-top: 50px;
+    }
+
+    .description {
+      width: 100%;
+    }
+  }
+}
+
+.footer {
+  padding: 50px;
+  background: $footerBackground;
+  color: $gray;
+  line-height: 24px;
+
+  .footer-text {
+    letter-spacing: 0.5px;
+  }
+
+  .text-blue {
+    color: $footerBlue;
+  }
+}
