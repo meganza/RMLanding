@@ -5,7 +5,11 @@
 $brightBlue: #31BEF8;
 $darkBlue: #285B8D;
 $footerBlue: #4A90E2;
+$borderGray: #F2F2F2;
 $gray: #D4D4D4;
+$darkGray: #373737;
+$newsGray: #777777;
+$headingGray: #373737;
 $orange: #F4A657;
 $playYellow: #FFBB00;
 $videoDuration: #0E1F2E;
@@ -19,6 +23,7 @@ $whoBackground: #0C2239;
 $footerBackground: #101C33;
 $gradientLight: #1A4366;
 $gradientDark: #0B2036;
+
 
 @mixin text ($family, $weight, $size, $color, $spacing, $transform){
   font-family: $family;
@@ -64,10 +69,14 @@ $gradientDark: #0B2036;
   background: linear-gradient(to top right, $gradientDark, $gradientLight);
 }
 
+@mixin gray-border {
+  border-top: 1px solid $borderGray;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   color: white;
-  background: $darkBlue;
+  background: $gradientLight;
 }
 
 .company-name {
@@ -90,6 +99,8 @@ h3 {
   @include text('Poppins', 100, 40px, white, -1px, none);
   padding: 10px 0px 25px 0px;
 }
+h4 { @include text('Poppins', bold, 14px, $darkGray, 1.5px, uppercase); }
+h5 { @include text('Poppins', normal, 19px, $headingGray, 0px, none); }
 
 button {
   @extend a;
@@ -449,6 +460,104 @@ button {
     text-align: center;
     padding-bottom: 40px;
   }
+}
+
+.posts {
+  p {
+    color: $newsGray;
+  }
+
+  .post {
+    padding-top: 25px;
+
+    .date {
+      @include gray-border;
+      padding-top: 10px;
+
+      .date-inline {
+        @include text('Poppins', normal, 14px, $darkBlue, 0px, uppercase);
+        .number {
+          font-weight: bold;
+        }
+      }
+
+      .date-normal {
+        text-align: center;
+
+        .number {
+          @include text('Poppins', normal, 24px, $darkBlue, 0px, uppercase);
+        }
+        .days {
+          @include text('Poppins', normal, 8px, $headingGray, 2px, uppercase);
+        }
+        .circle {
+          @include default-circle(40px, $borderGray);
+          margin: 13px auto;
+        }
+      }
+    }
+
+    .content {
+      @include gray-border;
+      padding-top: 15px;
+
+      .author {
+        @include text('Poppins', lighter, 14px, $newsGray, 0px, none);
+      }
+
+      .sample-media {
+        height: 100px;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        background: linear-gradient(to bottom, rgba(216, 216,216,1), rgba(216, 216, 216,0));
+
+        .play-video {
+          @include default-circle(50px, $brightBlue);
+          margin-top: 80px;
+        }
+      }
+
+      @media (max-width: 560px){
+        border: none;
+      }
+    }
+  }
+
+}
+
+@media (max-width: 560px){
+  .extra {
+    display: none;
+  }
+}
+
+.events {
+  color: black;
+
+  .table {
+    margin-top: 32px;
+
+    th {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: lighter;
+      border-bottom: none;
+      .bold {
+        font-weight: bold;
+      }
+    }
+
+    td {
+      @include gray-border;
+    }
+
+
+    .date { @include text('Poppins', normal, 14px, $darkGray, 1px, none); }
+    .title { @include text('Poppins', normal, 14px, $darkBlue, 0px, none); }
+
+  }
+
 }
 
 .people {
