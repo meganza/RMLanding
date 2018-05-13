@@ -2,6 +2,6 @@
 
 Made with Parcel, Bootstrap 4, and SCSS.
 
-sandbox: https://codesandbox.io/s/pm7wvpz3jq
+sandbox: https://codesandbox.io/s/n5o5yvn8xp
 
-preview: https://pm7wvpz3jq.codesandbox.io
+preview: https://n5o5yvn8xp.codesandbox.io
