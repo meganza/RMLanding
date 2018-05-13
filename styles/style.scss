@@ -489,6 +489,12 @@ button {
   }
 }
 
+@media (max-width: 750px) {
+  .people {
+    margin: 0px;
+  }
+}
+
 .footer {
   padding: 50px;
   background: $footerBackground;
